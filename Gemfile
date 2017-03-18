@@ -30,6 +30,7 @@ gem 'omniauth'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'active_model_serializers'
 gem 'rack-cors'
+gem 'rack-attack'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
