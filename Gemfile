@@ -32,6 +32,11 @@ gem 'rack-cors', :require => 'rack/cors'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  # Use RSpec for specs
+  gem 'rspec-rails', '>= 3.5.0'
+  # Use Factory Girl for generating random test data
+  gem 'factory_girl_rails'
+  gem 'pry', '~> 0.10.4'
 end
 
 group :development do
