@@ -1,9 +1,11 @@
+import { ModuleWithProviders } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {AuthGuard} from "./guards/auth.guard";
-import {ItemComponent} from "./item/item.component";
+import {ItemsComponent} from "./items/items.component";
+import {ItemFormComponent} from "./items/item-form/item-form.component";
 
 const routes: Routes = [
   {
@@ -20,11 +22,11 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AuthGuard]
   },
-  {
-    path: 'items',
-    component: ItemComponent
-    // canActivate: [AuthGuard]
-  }
+  { path: '', pathMatch: 'full', component: ItemsComponent, canActivate: [AuthGuard] },
+  { path: 'items', component: ItemsComponent, canActivate: [AuthGuard] },
+  { path: 'items/new', component: ItemFormComponent},
+  { path: 'items/:id', component: ItemFormComponent},
+  { path: 'items/:id/edit', component: ItemFormComponent},
 ];
 
 @NgModule({
@@ -33,3 +35,4 @@ const routes: Routes = [
   providers: []
 })
 export class AppRoutingModule { }
+export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
