@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>{{ title }}</h1>
+  <form (ngSubmit)="save()">
+    <div>
+      <label for="name">Name</label>
+      <input type="text" id="name" required [(ngModel)]="item.name" name='name'>
+    </div>
+    <div>
+      <label for="description">Description</label>
+      <input type="text" id="description" required [(ngModel)]="item.description" name='description'>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+  <hr />
+  <a routerLink="/items">Back to Items</a>
+</div>

@@ -15,8 +15,10 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import {AuthService} from "./services/auth.service";
 import { ProfileComponent } from './profile/profile.component';
 import {AuthGuard} from "./guards/auth.guard";
-import { ItemComponent } from './item/item.component';
+import { ItemsComponent } from './items/items.component';
 import { ItemFormComponent } from './items/item-form/item-form.component';
+import { ItemService } from './items/shared/item.service';
+import { routing } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { ItemFormComponent } from './items/item-form/item-form.component';
     LoginFormComponent,
     RegisterFormComponent,
     ProfileComponent,
-    ItemComponent,
+    ItemsComponent,
     ItemFormComponent
   ],
   imports: [
@@ -35,9 +37,10 @@ import { ItemFormComponent } from './items/item-form/item-form.component';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    MaterializeModule
+    MaterializeModule,
+    routing
   ],
-  providers: [ Angular2TokenService, AuthService, AuthGuard ],
+  providers: [ Angular2TokenService, AuthService, AuthGuard, ItemService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
