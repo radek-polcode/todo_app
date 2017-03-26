@@ -1,17 +1,17 @@
 module Api::V1
   class ItemsController < ApiController
-    before_action :authenticate_user!
+    # before_action :authenticate_user!
     before_action :set_item, only: [:show, :update, :destroy]
 
-    # GET /todos
+    # GET /items
     def index
       render json: Item.all
     end
 
-    # POST /todos
+    # POST /items
     def create
       @item = Item.new(item_params)
-      @item.user = current_user
+      # @item.user = current_user
       if @item.save
         json_response(@item, :created)
       else
@@ -19,18 +19,18 @@ module Api::V1
       end
     end
 
-    # GET /todos/:id
+    # GET /items/:id
     def show
-      json_response(@todo)
+      json_response(@item)
     end
 
-    # PUT /todos/:id
+    # PUT /items/:id
     def update
-      @item.update(todo_params)
+      @item.update(item_params)
       head :no_content
     end
 
-    # DELETE /todos/:id
+    # DELETE /items/:id
     def destroy
       @item.destroy
       head :no_content
