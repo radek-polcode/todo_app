@@ -1,6 +1,5 @@
 module Api::V1
   class ItemsController < ApiController
-    # before_action :authenticate_user!
     before_action :set_item, only: [:show, :update, :destroy]
 
     # GET /items
@@ -11,7 +10,8 @@ module Api::V1
     # POST /items
     def create
       @item = Item.new(item_params)
-      # @item.user = current_user
+      @item.user = User.first
+      # @item.user = current_user - not working
       if @item.save
         json_response(@item, :created)
       else
@@ -26,8 +26,11 @@ module Api::V1
 
     # PUT /items/:id
     def update
-      @item.update(item_params)
-      head :no_content
+      if @item.update(item_params)
+        json_response(@item, :created)
+      else
+        render json: @item.errors, status: :unprocessable_entity
+      end
     end
 
     # DELETE /items/:id
@@ -40,6 +43,7 @@ module Api::V1
     def item_params
       params.require(:item).permit(:name, :description)
     end
+
     def set_item
       @item = Item.find(params[:id])
     end
