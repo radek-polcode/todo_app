@@ -1,6 +1,6 @@
-module V1
+module Api::V1
   class ItemsController < ApiController
-    before_action :authenticate_v1_user!
+    # before_action :authenticate_v1_user!
     before_action :set_item, only: [:show, :update, :destroy]
 
     # GET /items
